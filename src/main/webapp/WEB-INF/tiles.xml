@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+    <definition name="base.definition"
+        template="/WEB-INF/view/layout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/view/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/view/menu.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/view/footer.jsp" />
+    </definition>
+
+     <definition name="main" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainData.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/main.jsp" />
+    </definition>
+
+    <definition name="mainData" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainData.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/main.jsp" />
+    </definition>
+
+     <definition name="mainDataExpanded" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainDataExpanded.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/main.jsp" />
+    </definition>
+ 
+    <definition name="activityList" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainDataExpanded.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/activityList.jsp" />
+    </definition>
+
+    <definition name="editActivity" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainDataExpanded.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/editActivity.jsp" />
+    </definition>
+
+    <definition name="deleteCity" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainDataExpanded.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/deleteCity.jsp" />
+    </definition>
+
+    <definition name="personList" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainDataExpanded.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/personList.jsp" />
+    </definition>
+    
+ 
+</tiles-definitions>
