@@ -16,19 +16,13 @@ public class AvtivityListController {
    @Autowired  
    private ActivityService activityService;   
 	
-
-//	it is not neccesary because of relationship:   
-//   @ModelAttribute("cities")
-//   public Collection<City> populateCities() {
-//       return this.cityService.getCityList();
-//   }
-   
    @RequestMapping(method = RequestMethod.GET)  
-   public ModelAndView onInit() {  
+   public ModelAndView onInit() {
         Map<String, Object> model = new HashMap<String, Object>();  
         model.put( "activity", activityService.getActivityList() );
         
         return new ModelAndView("activityList", model);  
     }  
+   
 }
  

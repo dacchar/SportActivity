@@ -27,7 +27,7 @@ public class ActivityType {
         return activityTypeId;  
     }  
   
-    public void setIdActivityType(int id) {  
+    public void setActivityTypeId(int id) {  
         this.activityTypeId = id;  
     }  
   

@@ -25,6 +25,10 @@
 			    </c:otherwise>
 			</c:choose>
 
+			<c:out value="${activityTypes[0].name}"/>
+			<c:out value="${persons[0].name}"/>
+			<c:out value="${persons[1].name}"/>
+			
 		</h2>
 		
 		<form:form method="${method}" commandName="activity">
@@ -41,23 +45,9 @@
 			    </tr>
 			    <tr>
 			        <td><form:label path="activityDate"><spring:message code="activityEdit.label.activityDate"/></form:label></td>
-			        <td><form:input path="activityDate" /></td>
+			        <td><form:input path="activityDate" type="date"/></td>
 			        <td><form:errors path="activityDate" cssClass="error"></form:errors></td>
 			    </tr>
-
-				<!-- 
-			    <tr>
-			        <td><form:label path="person"><spring:message code="activityEdit.label.person"/></form:label></td>
-			        <td><form:input path="person" /></td>
-			        <td><form:errors path="person" cssClass="error"></form:errors></td>
-			    </tr>
-
-			    <tr>
-			        <td><form:label path="sportDevice"><spring:message code="activityEdit.label.sportDevice"/></form:label></td>
-			        <td><form:input path="sportDevice" /></td>
-			        <td><form:errors path="sportDevice" cssClass="error"></form:errors></td>
-			    </tr>
-			     -->
 
 			    <tr>
 			        <td><form:label path="amount"><spring:message code="activityEdit.label.amount"/></form:label></td>
@@ -94,7 +84,7 @@
 						        		selected 
 						        	</c:if>    
 						        >
-						        	${currentActivityType.name}
+						        	${currentPerson.name}
 						        </option>
 						    </c:forEach>
 						</select>
@@ -112,7 +102,7 @@
 						        		selected 
 						        	</c:if>    
 						        >
-						        	${currentActivityType.name}
+						        	${currentSportDevice.name}
 						        </option>
 						    </c:forEach>
 						</select>

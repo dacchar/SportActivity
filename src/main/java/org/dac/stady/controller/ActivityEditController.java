@@ -1,10 +1,11 @@
 package org.dac.stady.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;  
-
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityType;
 import org.dac.stady.domain.Person;
@@ -15,6 +16,7 @@ import org.dac.stady.service.PersonService;
 import org.dac.stady.service.SportDeviceService;
 import org.dac.stady.validator.EditActivityValidator;
 import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 //import org.springframework.context.MessageSource;
 //import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;  
@@ -71,6 +73,11 @@ public class ActivityEditController {
     	// for security reason, the user can change the id, it is not allowed:
         dataBinder.setDisallowedFields("activityId");
 
+        // format data in jsp:
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+        dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+        
         // done in dispacher servlet:
         //dataBinder.setConversionService(conversionService);
     }
@@ -120,6 +127,9 @@ public class ActivityEditController {
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String onInitAdd(Map<String, Object> map, Locale locale) {
 		Activity activity = new Activity();
+		
+		activity.setActivityDate( new Date() );
+		activity.setAmount(0);
 
 		map.put("activity", activity);
 		//map.put("title", messageSource.getMessage("useredit.label.title.add", null, locale) );

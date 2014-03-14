@@ -133,6 +133,7 @@
 	           <set>
 	                 <ref bean="activityTypeFormatter"/>
 	                 <ref bean="personFormatter"/>
+	                 <ref bean="sportDeviceFormatter"/>
 	           </set>
 	      </property>
 	</bean>
