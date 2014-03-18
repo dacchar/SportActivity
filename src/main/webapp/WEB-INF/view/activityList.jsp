@@ -41,15 +41,15 @@
 							<td><c:out value="${activity.amount}"/></td>
 							<td><c:out value="${activity.person.name}"/></td>  
 							<td><c:out value="${activity.sportDevice.name}"/></td>
-							<td><a href="<c:url value="/activityList/${activity.activityId}/edit"/>">Edit</a></td>  
-							<td><a href="<c:url value="/activityList/${activity.activityId}/delete"/>">Delete</a></td>
+							<td><a href="<c:url value="/data/activityList/${activity.activityId}/edit"/>">Edit</a></td>  
+							<td><a href="<c:url value="/data/activityList/${activity.activityId}/delete"/>">Delete</a></td>
 						</tr>  
 					</c:forEach>  
 				</table>  
 			</c:if>  
 		</center>
 		
-		<a href="<c:url value="/activityList/new"/>" >Add activity</a>
+		<a href="<c:url value="/data/activityList/new"/>" > <spring:message code="activitylist.table.add"/> </a>
 		  
 	</body>  
 </html>  

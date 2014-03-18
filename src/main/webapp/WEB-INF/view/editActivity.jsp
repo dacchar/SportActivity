@@ -118,6 +118,6 @@
 			</table> 
 		</form:form>
 	
-		<a href="<c:url value="/activityList"/>"><spring:message code="common.back"/></a>
+		<a href="<c:url value="/data/activityList"/>"><spring:message code="common.back"/></a>
 	</body>
 </html>

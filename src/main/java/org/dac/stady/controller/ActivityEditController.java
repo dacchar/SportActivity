@@ -1,11 +1,13 @@
 package org.dac.stady.controller;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;  
+
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityType;
 import org.dac.stady.domain.Person;
@@ -33,11 +35,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
   
 @Controller
 @SessionAttributes("activity")	// keep the object "activity" save in sessions between GET and PUT/POST
-@RequestMapping("/activityList")
+@RequestMapping("/data/activityList")
 public class ActivityEditController {  
 	
 	private String formPage = "editActivity";
-	private String successPage = "redirect:/activityList";
+	private String successPage = "redirect:/data/activityList";
   
 //	@Autowired
 //	private ConversionService conversionService;
@@ -96,7 +98,11 @@ public class ActivityEditController {
     public Collection<SportDevice> populateSportDevices() {
     	List<SportDevice> sportDevices = this.sportDeviceService.getList();
     	return sportDevices;
-//        return this.sportDeviceService.getList();
+    }
+    
+    @ModelAttribute("username")
+    public String populateUsername(Principal principal) {
+    	return principal.getName();
     }
     
 	@RequestMapping(value = "/{Id}/edit", method = RequestMethod.GET)

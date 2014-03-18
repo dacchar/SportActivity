@@ -1,7 +1,9 @@
 package org.dac.stady.controller;
 
+import java.security.Principal;
 import java.util.HashMap;  
 import java.util.Map;  
+
 import org.dac.stady.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.stereotype.Controller;  
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;  
   
 @Controller  
-@RequestMapping(value = "/personList", method = RequestMethod.GET)
+@RequestMapping(value = "/data/personList", method = RequestMethod.GET)
 public class PersonListController {  
 
    @Autowired  
@@ -24,9 +26,12 @@ public class PersonListController {
 //   }
    
    @RequestMapping(method = RequestMethod.GET)  
-   public ModelAndView onInit() {  
+   public ModelAndView onInit(Principal principal) {  
         Map<String, Object> model = new HashMap<String, Object>();  
         model.put( "person", personService.getList() );
+        
+        String name = principal.getName();
+		model.put("username", name);
         
         return new ModelAndView("personList", model);  
     }  
