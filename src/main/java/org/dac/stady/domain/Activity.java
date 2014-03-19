@@ -9,8 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;  
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
 
 @Entity  
 @Table(name = "activities")
@@ -34,6 +36,7 @@ public class Activity {
     @JoinColumn(name="sportDeviceId")
     private SportDevice sportDevice;
 	
+	@NotNull
 	@Column(name = "activityDate")  
     private Date activityDate;  
     
@@ -55,6 +58,7 @@ public class Activity {
 		this.activityDate = activityDate;
 	}
 
+	@NotNull
 	@Column(name = "amount")  
     private Integer amount;  
     

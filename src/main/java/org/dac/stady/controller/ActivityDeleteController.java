@@ -1,6 +1,5 @@
 package org.dac.stady.controller;
 
-import javax.validation.Valid;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -8,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;  
+
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityType;
 import org.dac.stady.domain.Person;
@@ -36,13 +36,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @SessionAttributes("activity")	// keep the object "activity" save in sessions between GET and PUT/POST
 @RequestMapping("/data/activityList")
-public class ActivityEditController {  
+public class ActivityDeleteController {  
 	
-	private String formPage = "editActivity";
+	private String formPage = "deleteActivity";
 	private String successPage = "redirect:/data/activityList";
   
-//	@Autowired
-//	private ConversionService conversionService;
 	
     @Autowired  
     private ActivityService activityService;  
@@ -55,21 +53,7 @@ public class ActivityEditController {
 
     @Autowired  
     private SportDeviceService sportDeviceService;  
-    
-	@Autowired
-	private EditActivityValidator editActivityValidator;
 	
-//	@Autowired
-//	private MessageSource messageSource;
-
-	public EditActivityValidator getEditActivityValidator() {
-		return editActivityValidator;
-	}
-
-	public void setEditActivityValidator(EditActivityValidator editActivityValidator) {
-		this.editActivityValidator = editActivityValidator;
-	}
-
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
     	// for security reason, the user can change the id, it is not allowed:
@@ -105,57 +89,20 @@ public class ActivityEditController {
     	return principal.getName();
     }
     
-	@RequestMapping(value = "/{Id}/edit", method = RequestMethod.GET)
-	public String onInitEdit(@PathVariable("Id") Integer Id, Map<String, Object> map, Locale locale) {
+	@RequestMapping(value = "/{Id}/delete", method = RequestMethod.GET)
+	public String onInit(@PathVariable("Id") Integer Id, Map<String, Object> map, Locale locale) {
 		Activity activity = activityService.getById(Id);
 		map.put("activity", activity);
 		
-//		Integer cityId = user.getCity().getId();
-//		map.put("cityId", cityId);
-		//map.put("title", messageSource.getMessage("useredit.label.title.edit", null, locale) );
-
 		return formPage;
 	}
 	
-	@RequestMapping( value = "{Id}/edit", method = { RequestMethod.PUT, RequestMethod.POST } )
-	public String onSubmitEdit(@Valid @ModelAttribute("activity") Activity activity, BindingResult result) 
+	@RequestMapping( value = "{Id}/delete", method = { RequestMethod.DELETE, RequestMethod.POST } )
+	public String onSubmit(@ModelAttribute("activity") Activity activity, BindingResult result) 
 	{
-		if (result.hasErrors()) {
-			return formPage;
-		}		
-		editActivityValidator.validate(activity, result);
-		if (result.hasErrors()) {
-			return formPage;
-		}
-
-		activityService.addActivity(activity);
+		activityService.remove( activity.getActivityId() );
 
 		return successPage;
 	}
 	
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String onInitAdd(Map<String, Object> map, Locale locale) {
-		Activity activity = new Activity();
-		
-		activity.setActivityDate( new Date() );
-		activity.setAmount(0);
-
-		map.put("activity", activity);
-		//map.put("title", messageSource.getMessage("useredit.label.title.add", null, locale) );
-
-		return formPage;
-	}
-   
-	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String onSubmitAdd(@ModelAttribute("activity") Activity activity, BindingResult result) 
-	{
-		editActivityValidator.validate(activity, result);
-		if (result.hasErrors()) {
-			return formPage;
-		}
-
-		activityService.addActivity(activity);
-
-		return successPage;
-	}
 }

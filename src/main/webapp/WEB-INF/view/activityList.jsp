@@ -41,8 +41,8 @@
 							<td><c:out value="${activity.amount}"/></td>
 							<td><c:out value="${activity.person.name}"/></td>  
 							<td><c:out value="${activity.sportDevice.name}"/></td>
-							<td><a href="<c:url value="/data/activityList/${activity.activityId}/edit"/>">Edit</a></td>  
-							<td><a href="<c:url value="/data/activityList/${activity.activityId}/delete"/>">Delete</a></td>
+							<td><a href="<c:url value="/data/activityList/${activity.activityId}/edit"/>"><img src="/SportActivity/resources/images/1395252654_edit-notes.png" alt="" /><a></td>
+							<td><a href="<c:url value="/data/activityList/${activity.activityId}/delete"/>"><img src="/SportActivity/resources/images/erase.png" alt="" /><a></td>
 						</tr>  
 					</c:forEach>  
 				</table>  

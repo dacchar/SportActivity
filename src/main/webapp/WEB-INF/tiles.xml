@@ -38,6 +38,12 @@
         <put-attribute name="body" value="/WEB-INF/view/editActivity.jsp" />
     </definition>
 
+    <definition name="deleteActivity" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainData.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/deleteActivity.jsp" />
+    </definition>
+    
     
     <definition name="login" extends="base.definition">
         <put-attribute name="title" value="Spring3HibernateIntegration" />

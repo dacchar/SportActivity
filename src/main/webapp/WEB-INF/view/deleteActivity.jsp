@@ -14,16 +14,8 @@
 	
 	<body>
 		<h2>
-			<c:choose>
-			    <c:when test="${activity.activityId == 0}">
-			       <c:set var="method" value="post"/>
-			       <spring:message code="activityEdit.label.title.add"/>
-			    </c:when>
-			    <c:otherwise>
-			        <c:set var="method" value="put"/>
-			        <spring:message code="activityEdit.label.title.edit"/>
-			    </c:otherwise>
-			</c:choose>
+	        <c:set var="method" value="delete"/>
+	        <spring:message code="activityDelete.label.title"/>
 		</h2>
 		
 		<form:form method="${method}" commandName="activity">
@@ -40,13 +32,13 @@
 			    </tr>
 			    <tr>
 			        <td><form:label path="activityDate"><spring:message code="activityEdit.label.activityDate"/></form:label></td>
-			        <td><form:input path="activityDate" type="date"/></td>
+			        <td><form:input path="activityDate"  disabled="true" type="date"/></td>
 			        <td><form:errors path="activityDate" cssClass="error"></form:errors></td>
 			    </tr>
 
 			    <tr>
 			        <td><form:label path="amount"><spring:message code="activityEdit.label.amount"/></form:label></td>
-			        <td><form:input path="amount" /></td>
+			        <td><form:input path="amount" disabled="true"/></td>
 			        <td><form:errors path="amount" cssClass="error"></form:errors></td>
 			    </tr>
 			    
@@ -54,7 +46,7 @@
 			    	<td><form:label path="activityType"><spring:message code="activityEdit.label.activityType"/></form:label></td>
 			    		
 			    	<td>
-						<select name="activityType">
+						<select name="activityType" disabled="true">
 						    <c:forEach var="currentActivityType" items="${activityTypes}">
 						        <option value="${currentActivityType.activityTypeId}"
 						        	<c:if test='${currentActivityType.activityTypeId == activity.activityType.activityTypeId }'> 
@@ -72,7 +64,7 @@
 			    	<td><form:label path="person"><spring:message code="activityEdit.label.person"/></form:label></td>
 			    		
 			    	<td>
-						<select name="person">
+						<select name="person" disabled="true">
 						    <c:forEach var="currentPerson" items="${persons}">
 						        <option value="${currentPerson.personId}"
 						        	<c:if test='${currentPerson.personId == activity.person.personId }'> 
@@ -90,7 +82,7 @@
 			    	<td><form:label path="sportDevice"><spring:message code="activityEdit.label.sportDevice"/></form:label></td>
 			    		
 			    	<td>
-						<select name="sportDevice">
+						<select name="sportDevice" disabled="true">
 						    <c:forEach var="currentSportDevice" items="${sportDevices}">
 						        <option value="${currentSportDevice.sportDeviceId}"
 						        	<c:if test='${currentSportDevice.sportDeviceId == activity.sportDevice.sportDeviceId }'> 
@@ -115,5 +107,7 @@
 			    </tr>
 			</table> 
 		</form:form>
+	
+		
 	</body>
 </html>

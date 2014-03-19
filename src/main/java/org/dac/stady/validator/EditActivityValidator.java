@@ -3,7 +3,6 @@ package org.dac.stady.validator;
 import org.dac.stady.domain.Activity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 
