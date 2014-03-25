@@ -3,15 +3,19 @@ package org.dac.stady.controller;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;  
+import java.util.List;
 import java.util.Map;  
 
 import javax.validation.Valid;
 
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityFilter;
+import org.dac.stady.domain.SportDevice;
 import org.dac.stady.service.ActivityService;
+import org.dac.stady.service.SportDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;  
@@ -37,10 +41,19 @@ public class AvtivityListController {
 	
    @Autowired  
    private ActivityService activityService;   
+
+   @Autowired  
+   private SportDeviceService sportDeviceService;
    
    @ModelAttribute("username")
    public String populateUsername(Principal principal) {
    	return principal.getName();
+   }
+   
+   @ModelAttribute("sportDevices")
+   public Collection<SportDevice> populateSportDevices() {
+   	List<SportDevice> sportDevices = this.sportDeviceService.getList();
+   	return sportDevices;
    }
    
    @InitBinder
@@ -50,20 +63,31 @@ public class AvtivityListController {
    }
    
    public AvtivityListController(){
-	   activityFilter = new ActivityFilter();
-   		
-	   Calendar calendar  = Calendar.getInstance();
-	   calendar.set(Calendar.MONTH, 0);
-	   calendar.set(Calendar.DAY_OF_MONTH, 1);
-	   Date startDate = calendar.getTime();
-	   activityFilter.setDateStart(startDate);
-	   activityFilter.setDateEnd( new Date() );
+//	   createActivityFilter();
    }
+
+	private void createActivityFilter() {
+		if(activityFilter == null){
+		   activityFilter = new ActivityFilter();
+		   		
+		   Calendar calendar  = Calendar.getInstance();
+		   calendar.set(Calendar.MONTH, 0);
+		   calendar.set(Calendar.DAY_OF_MONTH, 1);
+		   Date startDate = calendar.getTime();
+		   activityFilter.setDateStart(startDate);
+		   activityFilter.setDateEnd( new Date() );
+		   
+		   SportDevice sportDevice = sportDeviceService.getById(1);
+		   activityFilter.setSportDevice(sportDevice);
+		}
+	}
 	
    @RequestMapping(method = RequestMethod.GET)  
    public ModelAndView onInit(Principal principal) {
         Map<String, Object> model = new HashMap<String, Object>();  
 		
+        createActivityFilter();
+        
 //        model.put( "activity", activityService.getActivityList() );
         model.put( "activity", activityService.getActivityList(activityFilter) );
         model.put( "activityFilter", activityFilter );

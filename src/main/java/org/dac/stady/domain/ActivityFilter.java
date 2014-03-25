@@ -12,6 +12,8 @@ public class ActivityFilter {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dateEnd;
 	
+	private boolean sportDeviceFiltered = false;
+	private SportDevice sportDevice;
 	
 	public Date getDateStart() {
 		return dateStart;
@@ -24,5 +26,18 @@ public class ActivityFilter {
 	}
 	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
+	}
+	
+	public SportDevice getSportDevice() {
+		return sportDevice;
+	}
+	public void setSportDevice(SportDevice sportDevice) {
+		this.sportDevice = sportDevice;
+	}
+	public boolean isSportDeviceFiltered() {
+		return sportDeviceFiltered;
+	}
+	public void setSportDeviceFiltered(boolean sportDeviceFiltered) {
+		this.sportDeviceFiltered = sportDeviceFiltered;
 	}
 }

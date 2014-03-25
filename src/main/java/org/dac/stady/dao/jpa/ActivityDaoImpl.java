@@ -50,6 +50,9 @@ public class ActivityDaoImpl implements ActivityDao {
         Session session = sessionfactory.getCurrentSession();
         Criteria criteria = session.createCriteria(Activity.class);
         criteria.add( Restrictions.between("activityDate", activityFilter.getDateStart(), activityFilter.getDateEnd()) );
+        if( activityFilter.isSportDeviceFiltered() ){
+        	criteria.add( Restrictions.eq("sportDevice", activityFilter.getSportDevice()) );
+        }
         
         criteria.addOrder( Order.desc("activityDate") );
         criteria.addOrder( Order.desc("activityTime") );

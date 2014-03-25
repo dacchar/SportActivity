@@ -42,6 +42,29 @@
 					    </tr>
 					    
 					    <tr>
+					    	<td><form:radiobutton path="sportDeviceFiltered" value="false"/><spring:message code="activitylist.label.sportDeviceFiltered.All"/></td>
+					    	<td>
+							</td>
+					    </tr>
+					    
+					    <tr>
+					    	 <td><form:radiobutton path="sportDeviceFiltered" value="true"/><spring:message code="activitylist.label.sportDeviceFiltered.OnlyOne"/></td>
+					    	<td>
+								<select name="sportDevice">
+								    <c:forEach var="currentSportDevice" items="${sportDevices}">
+								        <option value="${currentSportDevice.sportDeviceId}"
+								        	<c:if test='${currentSportDevice.sportDeviceId == activityFilter.sportDevice.sportDeviceId }'> 
+								        		selected 
+								        	</c:if>    
+								        >
+								        	${currentSportDevice.name}
+								        </option>
+								    </c:forEach>
+								</select>
+							</td>
+					    </tr>
+					    
+					    <tr>
 					        <td>
 					        </td>
 					        <td>
