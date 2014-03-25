@@ -1,6 +1,7 @@
 package org.dac.stady.domain;  
   
 //import java.sql.Date;
+import java.sql.Time;
 import java.util.Date;
 import javax.persistence.Column;  
 import javax.persistence.Entity;  
@@ -12,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity  
@@ -37,11 +40,16 @@ public class Activity {
     private SportDevice sportDevice;
 	
 	@NotNull
-	@Column(name = "activityDate")  
+	@Column(name = "activityDate")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date activityDate;  
-    
 
-    public ActivityType getActivityType() {
+	@NotNull
+	@Column(name = "activityTime")  
+    private Time activityTime;  
+	
+
+	public ActivityType getActivityType() {
 		return activityType;
 	}
 
@@ -98,4 +106,14 @@ public class Activity {
 	public void setSportDevice(SportDevice sportDevice) {
 		this.sportDevice = sportDevice;
 	}
+	
+	@XmlElement
+    public Time getActivityTime() {
+		return activityTime;
+	}
+
+	public void setActivityTime(Time activityTime) {
+		this.activityTime = activityTime;
+	}
+	
 }

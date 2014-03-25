@@ -1,13 +1,14 @@
 package org.dac.stady.dao.jpa;  
   
 import java.util.List;  
-
 import org.dac.stady.dao.ActivityDao;
 import org.dac.stady.domain.Activity;
+import org.dac.stady.domain.ActivityFilter;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;  
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.stereotype.Repository;  
 import org.springframework.transaction.annotation.Transactional;
@@ -30,16 +31,36 @@ public class ActivityDaoImpl implements ActivityDao {
     @Transactional  
     public List<Activity> getActivityList() {  
   
-        @SuppressWarnings("unchecked")  
         Session session = sessionfactory.getCurrentSession();
         Criteria  criteria = session.createCriteria(Activity.class);
         criteria.addOrder( Order.desc("activityDate") );
+        criteria.addOrder( Order.desc("activityTime") );
         criteria.addOrder( Order.desc("activityId") );
-        List<Activity> list = criteria.list();
+        
+        @SuppressWarnings("unchecked")
+		List<Activity> list = criteria.list();
         
         return list;  
       }  
+
+    @Override  
+    @Transactional  
+    public List<Activity> getActivityList(ActivityFilter activityFilter) {  
   
+        Session session = sessionfactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Activity.class);
+        criteria.add( Restrictions.between("activityDate", activityFilter.getDateStart(), activityFilter.getDateEnd()) );
+        
+        criteria.addOrder( Order.desc("activityDate") );
+        criteria.addOrder( Order.desc("activityTime") );
+        criteria.addOrder( Order.desc("activityId") );
+        
+        @SuppressWarnings("unchecked")
+		List<Activity> list = criteria.list();
+        
+        return list;  
+      }  
+    
     @Override  
     @Transactional  
     public Activity getById(Integer id){

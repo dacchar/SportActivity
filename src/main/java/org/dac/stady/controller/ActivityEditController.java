@@ -1,6 +1,7 @@
 package org.dac.stady.controller;
 
 import javax.validation.Valid;
+import java.sql.Time;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -19,6 +20,7 @@ import org.dac.stady.service.SportDeviceService;
 import org.dac.stady.validator.EditActivityValidator;
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.format.annotation.DateTimeFormat;
 //import org.springframework.context.MessageSource;
 //import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;  
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import java.util.Calendar;
 
 
   
@@ -76,9 +79,10 @@ public class ActivityEditController {
         dataBinder.setDisallowedFields("activityId");
 
         // format data in jsp:
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        dateFormat.setLenient(false);
-        dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+        // comment in favor of @DateTimeFormat(pattern = "dd/MM/yyyy") in domain model
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        dateFormat.setLenient(false);
+//        dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
         
         // done in dispacher servlet:
         //dataBinder.setConversionService(conversionService);
@@ -137,8 +141,12 @@ public class ActivityEditController {
 	public String onInitAdd(Map<String, Object> map, Locale locale) {
 		Activity activity = new Activity();
 		
-		activity.setActivityDate( new Date() );
+		Date currentDate = new Date();
+		activity.setActivityDate(currentDate);
 		activity.setAmount(0);
+		
+		long currentTime = currentDate.getTime();
+		activity.setActivityTime( new Time(currentTime) );
 
 		map.put("activity", activity);
 		//map.put("title", messageSource.getMessage("useredit.label.title.add", null, locale) );

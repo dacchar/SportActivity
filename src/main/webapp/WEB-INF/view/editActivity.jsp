@@ -1,6 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 	<head>
@@ -24,10 +25,19 @@
 			        <spring:message code="activityEdit.label.title.edit"/>
 			    </c:otherwise>
 			</c:choose>
+			
+			
+			
 		</h2>
 		
 		<form:form method="${method}" commandName="activity">
 		 
+		 d1
+		 <c:out value="${activity.amount}"/>
+		 <c:out value="${activity.activityTime}"/>
+		 d1a
+		 <fmt:formatDate value="${activity.activityTime}" pattern="HH:mm:ss"/>
+		 d2
 		 	<!-- 
 		 	<form:hidden path="activityId" />
 		 	 -->
@@ -38,10 +48,17 @@
 			        <td><form:input path="activityId" disabled="true" /></td>
 			        <td><form:errors path="activityId" cssClass="error"></form:errors></td>
 			    </tr>
+			    
 			    <tr>
 			        <td><form:label path="activityDate"><spring:message code="activityEdit.label.activityDate"/></form:label></td>
 			        <td><form:input path="activityDate" type="date"/></td>
 			        <td><form:errors path="activityDate" cssClass="error"></form:errors></td>
+			    </tr>
+
+			    <tr>
+			        <td><form:label path="activityTime"><spring:message code="activityEdit.label.activityTime"/></form:label></td>
+			        <td><form:input path="activityTime" type="time"/></td>
+			        <td><form:errors path="activityTime" cssClass="error"></form:errors></td>
 			    </tr>
 
 			    <tr>
