@@ -1,6 +1,7 @@
 package org.dac.stady.service;
 
 import java.util.List;
+
 import org.dac.stady.dao.ActivityDao;
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityFilter;
@@ -32,6 +33,11 @@ public class ActivityServiceImpl implements ActivityService {
 		return activityDao.getActivityList(activityFilter); 
 	}
 
+	@Override
+	public Long getCount(ActivityFilter activityFilter){
+		return activityDao.getCount(activityFilter); 
+	}
+	
 	@Override
 	public Activity getById(Integer id) {
 		return activityDao.getById(id);

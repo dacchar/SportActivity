@@ -28,50 +28,60 @@
 				<c:set var="method" value="put"/>
 				
 				<form:form method="${method}" commandName="activityFilter">
-				    <table>
-					    <tr>
-					        <td><form:label path="dateStart"><spring:message code="activitylist.label.dateStart"/></form:label></td>
-					        <td><form:input path="dateStart"/></td>
-					        <td><form:errors path="dateStart" cssClass="error"></form:errors></td>
-					    </tr>
-					    
-					    <tr>
-					        <td><form:label path="dateEnd"><spring:message code="activitylist.label.dateEnd"/></form:label></td>
-					        <td><form:input path="dateEnd"/></td>
-					        <td><form:errors path="dateEnd" cssClass="error"></form:errors></td>
-					    </tr>
-					    
-					    <tr>
-					    	<td><form:radiobutton path="sportDeviceFiltered" value="false"/><spring:message code="activitylist.label.sportDeviceFiltered.All"/></td>
-					    	<td>
+				
+					<table>
+						<tr>
+							<td>
+								<table>
+								    <tr>
+								        <td><form:label path="dateStart"><spring:message code="activitylist.label.dateStart"/></form:label></td>
+								        <td><form:input path="dateStart"/></td>
+								        <td><form:errors path="dateStart" cssClass="error"></form:errors></td>
+								    </tr>
+								    
+								    <tr>
+								        <td><form:label path="dateEnd"><spring:message code="activitylist.label.dateEnd"/></form:label></td>
+								        <td><form:input path="dateEnd"/></td>
+								        <td><form:errors path="dateEnd" cssClass="error"></form:errors></td>
+								    </tr>
+								</table>
 							</td>
-					    </tr>
-					    
-					    <tr>
-					    	 <td><form:radiobutton path="sportDeviceFiltered" value="true"/><spring:message code="activitylist.label.sportDeviceFiltered.OnlyOne"/></td>
-					    	<td>
-								<select name="sportDevice">
-								    <c:forEach var="currentSportDevice" items="${sportDevices}">
-								        <option value="${currentSportDevice.sportDeviceId}"
-								        	<c:if test='${currentSportDevice.sportDeviceId == activityFilter.sportDevice.sportDeviceId }'> 
-								        		selected 
-								        	</c:if>    
-								        >
-								        	${currentSportDevice.name}
-								        </option>
-								    </c:forEach>
-								</select>
+							<td>
+								<table>
+								    <tr>
+								    	<td align="left"><form:radiobutton path="sportDeviceFiltered" value="false"/><spring:message code="activitylist.label.sportDeviceFiltered.All"/></td>
+								    	<td>
+										</td>
+								    </tr>
+								    
+								    <tr>
+								    	<td align="left"><form:radiobutton path="sportDeviceFiltered" value="true"/><spring:message code="activitylist.label.sportDeviceFiltered.OnlyOne"/></td>
+								    	<td>
+											<select name="sportDevice">
+											    <c:forEach var="currentSportDevice" items="${sportDevices}">
+											        <option value="${currentSportDevice.sportDeviceId}"
+											        	<c:if test='${currentSportDevice.sportDeviceId == activityFilter.sportDevice.sportDeviceId }'> 
+											        		selected 
+											        	</c:if>    
+											        >
+											        	${currentSportDevice.name}
+											        </option>
+											    </c:forEach>
+											</select>
+										</td>
+								    </tr>
+								</table>
 							</td>
-					    </tr>
-					    
-					    <tr>
-					        <td>
-					        </td>
-					        <td>
-					            <input type="submit" value="<spring:message code="common.ok"/>"/>
-					        </td>
-					    </tr>
-					</table>					    
+						</tr>
+						
+						<tr>
+							<td>Sum: <c:out value="${count}"/></td>
+							<td align="right">
+								<input type="submit" value="<spring:message code="common.ok"/>"/>
+							</td>
+						</tr>
+					</table>
+					
 				</form:form>
 				
 

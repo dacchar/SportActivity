@@ -44,6 +44,11 @@ public class AvtivityListController {
 
    @Autowired  
    private SportDeviceService sportDeviceService;
+
+//   @ModelAttribute("count")
+//   public String populateCount() {
+//   		return activityService.getCount(activityFilter).toString();
+//   }
    
    @ModelAttribute("username")
    public String populateUsername(Principal principal) {
@@ -62,10 +67,6 @@ public class AvtivityListController {
 //	   dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
    }
    
-   public AvtivityListController(){
-//	   createActivityFilter();
-   }
-
 	private void createActivityFilter() {
 		if(activityFilter == null){
 		   activityFilter = new ActivityFilter();
@@ -91,6 +92,9 @@ public class AvtivityListController {
 //        model.put( "activity", activityService.getActivityList() );
         model.put( "activity", activityService.getActivityList(activityFilter) );
         model.put( "activityFilter", activityFilter );
+
+        Long count = activityService.getCount(activityFilter);
+        model.put( "count", count );
 
         return new ModelAndView("activityList", model);  
     }  

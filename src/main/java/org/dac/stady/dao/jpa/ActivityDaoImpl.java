@@ -1,6 +1,7 @@
 package org.dac.stady.dao.jpa;  
   
 import java.util.List;  
+
 import org.dac.stady.dao.ActivityDao;
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityFilter;
@@ -8,6 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;  
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.stereotype.Repository;  
@@ -63,6 +65,20 @@ public class ActivityDaoImpl implements ActivityDao {
         
         return list;  
       }  
+    
+    @Override  
+    @Transactional  
+    public Long getCount(ActivityFilter activityFilter){
+    	Session session = sessionfactory.getCurrentSession();
+    	Criteria criteria = session.createCriteria(Activity.class);
+        if( activityFilter.isSportDeviceFiltered() ){
+        	criteria.add( Restrictions.eq("sportDevice", activityFilter.getSportDevice()) );
+        }
+        //Long result = (Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
+        Long result = (Long) criteria.setProjection(Projections.sum("amount") ).uniqueResult();
+        
+    	return result;
+    }
     
     @Override  
     @Transactional  

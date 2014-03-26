@@ -9,6 +9,7 @@ public interface ActivityDao {
 	public void save(Activity activity);  
 	public List<Activity> getActivityList();
 	public List<Activity> getActivityList(ActivityFilter activityFilter);
+	public Long getCount(ActivityFilter activityFilter);
 	public Activity getById(Integer id);
 	public void remove(Integer id);
 }  
