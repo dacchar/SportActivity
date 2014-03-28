@@ -3,7 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
@@ -84,7 +84,8 @@
 					
 				</form:form>
 				
-				<table border="1" bgcolor="black" width="600px">  
+				
+				<table border="1" bgcolor="black" width="600px">
 					<tr style="background-color: teal;color: white;text-align: center;" height="40px">  
 						<td><spring:message code="activitylist.table.column.id"/></td>  
 						<td><spring:message code="activitylist.table.column.activitydate"/></td>
@@ -95,8 +96,8 @@
 						<td></td>
 						<td></td>
 					</tr>  
-					
-					<c:forEach items="${activity}" var="activity">  
+				
+					<c:forEach items="${pagedListHolder.pageList}" var="activity">
 						<tr style="background-color:white;color: black;text-align: center;" height="30px" >  
 							<td><c:out value="${activity.activityId}"/></td>
 							<td><fmt:formatDate value="${activity.activityDate}" pattern="dd.MM.yyyy" type="date" dateStyle="long" /></td>
@@ -107,14 +108,33 @@
 							<td><a href="<c:url value="/data/activityList/${activity.activityId}/edit"/>"><img src="/SportActivity/resources/images/1395252654_edit-notes.png" alt="" /></a></td>
 							<td><a href="<c:url value="/data/activityList/${activity.activityId}/delete"/>"><img src="/SportActivity/resources/images/erase.png" alt="" /></a></td>
 						</tr>  
-					</c:forEach>  
-				</table>  
+					</c:forEach>
+				</table>
 				
-				
+				<table>
+					<tr>
+						<td align="left">
+							<c:if test="${!pagedListHolder.firstPage}">
+								<a href="<c:url value="/data/activityList?page=1"/>">First</a>
+								<a href="<c:url value="/data/activityList?page=${pagedListHolder.page}"/>">Prev</a>
+							</c:if>
+						</td>
+						<td align="center">
+								<c:out value="${pagedListHolder.page + 1}"/> <c:out value=" of "/> <c:out value="${pagedListHolder.pageCount}"/>
+						</td>
+							<td align="right">
+								<c:if test="${!pagedListHolder.lastPage}">
+									<a href="<c:url value="/data/activityList?page=${pagedListHolder.page + 2}"/>">Next</a>
+									<a href="<c:url value="/data/activityList?page=${pagedListHolder.pageCount}"/>">Last</a>
+								</c:if>
+						</td>
+					</tr>
+				</table>
 			</c:if>  
 		</center>
 		
-		<a href="<c:url value="/data/activityList/new"/>" > <spring:message code="activitylist.table.add"/> </a>
+		<a href="<c:url value="/data/activityList/new"/>" > <img src="/SportActivity/resources/images/add.png" alt="qqqq" /> </a>
+		<!-- <spring:message code="activitylist.table.add"/> -->
 		  
 	</body>  
 </html>  

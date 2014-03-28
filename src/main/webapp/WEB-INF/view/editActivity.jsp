@@ -32,12 +32,6 @@
 		
 		<form:form method="${method}" commandName="activity">
 		 
-		 d1
-		 <c:out value="${activity.amount}"/>
-		 <c:out value="${activity.activityTime}"/>
-		 d1a
-		 <fmt:formatDate value="${activity.activityTime}" pattern="HH:mm:ss"/>
-		 d2
 		 	<!-- 
 		 	<form:hidden path="activityId" />
 		 	 -->

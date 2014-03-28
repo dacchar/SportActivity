@@ -71,10 +71,10 @@ public class ActivityDaoImpl implements ActivityDao {
     public Long getCount(ActivityFilter activityFilter){
     	Session session = sessionfactory.getCurrentSession();
     	Criteria criteria = session.createCriteria(Activity.class);
+    	criteria.add( Restrictions.between("activityDate", activityFilter.getDateStart(), activityFilter.getDateEnd()) );
         if( activityFilter.isSportDeviceFiltered() ){
         	criteria.add( Restrictions.eq("sportDevice", activityFilter.getSportDevice()) );
         }
-        //Long result = (Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
         Long result = (Long) criteria.setProjection(Projections.sum("amount") ).uniqueResult();
         
     	return result;

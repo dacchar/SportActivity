@@ -5,29 +5,50 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<style type="text/css">
+		    div {padding: 5px; margin: 0px; }
+			#header-style {background: WhiteSmoke;}
+			#title-style {background: #665845;}
+			#subtitle-style {background: #9F8158;}
+			#menu-style {background: white;}
+			#primary-style {background: white;}
+			#footer-style {background: Azure;}
+		</style>		 
+
 		<title>
 			<tiles:insertAttribute name="title" ignore="true" />
 		</title>
+		
 	</head>
 	
-	<body>
+	<body style="background: white;">
+	
 		<table border="1" cellpadding="2" cellspacing="2" >
 		    <tr>
 		        <td height="30" colspan="2">
-		        	<tiles:insertAttribute name="header" />
+		        	<div id="header-style">
+		        		<tiles:insertAttribute name="header" />
+		        	</div>
 		        </td>
 		    </tr>
 		    <tr>
 		        <td height="250">
-		        	<tiles:insertAttribute name="menu" />
+		        	<div id="menu-style">
+		        		<tiles:insertAttribute name="menu" />
+		        	</div>
 		        </td>
 		        <td width="350">
-		        	<tiles:insertAttribute name="body" />
+		        	<div id="primary-style">
+		        		<tiles:insertAttribute name="body" />
+		        	</div>
 		        </td>
 		    </tr>
 		    <tr>
 		        <td height="30" colspan="2">
-		        	<tiles:insertAttribute name="footer" />
+		        	<div id="footer-style">
+		        		<tiles:insertAttribute name="footer" />
+		        	</div>
 		        </td>
 		    </tr>
 		</table>

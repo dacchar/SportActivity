@@ -15,6 +15,15 @@ public class ActivityFilter {
 	private boolean sportDeviceFiltered = false;
 	private SportDevice sportDevice;
 	
+	boolean initialized = false;
+	
+	public boolean isInitialized() {
+		return initialized;
+	}
+	public void setInitialized(boolean initialized) {
+		this.initialized = initialized;
+	}
+	
 	public Date getDateStart() {
 		return dateStart;
 	}

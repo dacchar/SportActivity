@@ -32,6 +32,13 @@
         <put-attribute name="body" value="/WEB-INF/view/activityList.jsp" />
     </definition>
 
+    <definition name="activityListPaged" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainData.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/activityListPaged.jsp" />
+    </definition>
+    
+
     <definition name="editActivity" extends="base.definition">
         <put-attribute name="title" value="Spring3HibernateIntegration" />
         <put-attribute name="menu" value="/WEB-INF/view/menuMainData.jsp" />
