@@ -12,9 +12,10 @@ import javax.validation.Valid;
 
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityFilter;
-import org.dac.stady.domain.PageInfo;
+import org.dac.stady.domain.Person;
 import org.dac.stady.domain.SportDevice;
 import org.dac.stady.service.ActivityService;
+import org.dac.stady.service.PersonService;
 import org.dac.stady.service.SportDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.beans.support.PagedListHolder;
@@ -52,6 +53,9 @@ public class AvtivityListController {
    @Autowired  
    private SportDeviceService sportDeviceService;
 
+   @Autowired  
+   private PersonService personService;
+   
 //   @ModelAttribute("count")
 //   public String populateCount() {
 //   		return activityService.getCount(activityFilter).toString();
@@ -59,13 +63,19 @@ public class AvtivityListController {
    
    @ModelAttribute("username")
    public String populateUsername(Principal principal) {
-   	return principal.getName();
+	   return principal.getName();
    }
    
    @ModelAttribute("sportDevices")
    public Collection<SportDevice> populateSportDevices() {
-   	List<SportDevice> sportDevices = this.sportDeviceService.getList();
-   	return sportDevices;
+	   	List<SportDevice> sportDevices = this.sportDeviceService.getList();
+	   	return sportDevices;
+   }
+
+   @ModelAttribute("persons")
+   public Collection<Person> populatePersons() {
+		List<Person> persons = this.personService.getList();
+		return persons;
    }
    
    @InitBinder
@@ -108,7 +118,12 @@ public class AvtivityListController {
         
 		String viewName;
 		if( page.equals("alle")){
-			viewName = "activityList";
+//			viewName = "activityList";
+//			viewName = "activityList?page=0";
+			
+			PagedListHolder pagedListHolder = new PagedListHolder(activities);
+			model.put( "pagedListHolder", pagedListHolder );
+			viewName = "activityListPaged";
 		} else {
 	        PagedListHolder pagedListHolder = new PagedListHolder(activities);
 //	        int test = pagedListHolder.getPageSize();

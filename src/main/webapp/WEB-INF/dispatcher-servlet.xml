@@ -161,10 +161,14 @@
  	  	
 	 
    <!-- an HTTP Session-scoped bean exposed as a proxy -->
+   <!-- 
    <bean id="pageInfo" class="org.dac.stady.domain.PageInfo" scope="session">
+    -->
       <!-- this next element effects the proxying of the surrounding bean -->
+      <!-- 
       <aop:scoped-proxy/>
    </bean>
+    -->
     
    <bean id="activityFilter" class="org.dac.stady.domain.ActivityFilter" scope="session">
       <!-- this next element effects the proxying of the surrounding bean -->

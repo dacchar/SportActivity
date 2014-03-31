@@ -73,11 +73,42 @@
 								</table>
 							</td>
 						</tr>
+
+						<tr>
+							<td>
+							</td>
+							<td>
+								<table>
+								    <tr>
+								    	<td align="left"><form:radiobutton path="personFiltered" value="false"/><spring:message code="activitylist.label.personFiltered.All"/></td>
+								    	<td>
+										</td>
+								    </tr>
+								    
+								    <tr>
+								    	<td align="left"><form:radiobutton path="personFiltered" value="true"/><spring:message code="activitylist.label.personFiltered.OnlyOne"/></td>
+								    	<td>
+											<select name="person">
+											    <c:forEach var="currentPerson" items="${persons}">
+											        <option value="${currentPerson.personId}"
+											        	<c:if test='${currentPerson.personId == activityFilter.person.personId }'> 
+											        		selected 
+											        	</c:if>    
+											        >
+											        	${currentPerson.name}
+											        </option>
+											    </c:forEach>
+											</select>
+										</td>
+								    </tr>
+								</table>
+							</td>
+						</tr>
 						
 						<tr>
 							<td>Sum: <c:out value="${count}"/></td>
 							<td align="right">
-								<input type="submit" value="<spring:message code="common.ok"/>"/>
+								<input type="submit" value="<spring:message code="activitylist.label.filter"/>"/>
 							</td>
 						</tr>
 					</table>
@@ -111,6 +142,7 @@
 					</c:forEach>
 				</table>
 				
+				<!-- table scroll controls: -->
 				<table>
 					<tr>
 						<td align="left">

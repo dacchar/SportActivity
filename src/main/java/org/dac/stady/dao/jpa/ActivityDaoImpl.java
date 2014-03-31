@@ -5,6 +5,7 @@ import java.util.List;
 import org.dac.stady.dao.ActivityDao;
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityFilter;
+import org.dac.stady.domain.Person;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;  
@@ -56,6 +57,11 @@ public class ActivityDaoImpl implements ActivityDao {
         	criteria.add( Restrictions.eq("sportDevice", activityFilter.getSportDevice()) );
         }
         
+        Person filteredPerson = activityFilter.getPerson();
+        if( activityFilter.isPersonFiltered() ){
+        	criteria.add( Restrictions.eq("person", filteredPerson) );
+        }
+        
         criteria.addOrder( Order.desc("activityDate") );
         criteria.addOrder( Order.desc("activityTime") );
         criteria.addOrder( Order.desc("activityId") );
@@ -74,6 +80,9 @@ public class ActivityDaoImpl implements ActivityDao {
     	criteria.add( Restrictions.between("activityDate", activityFilter.getDateStart(), activityFilter.getDateEnd()) );
         if( activityFilter.isSportDeviceFiltered() ){
         	criteria.add( Restrictions.eq("sportDevice", activityFilter.getSportDevice()) );
+        }
+        if( activityFilter.isPersonFiltered() ){
+        	criteria.add( Restrictions.eq("person", activityFilter.getPerson()) );
         }
         Long result = (Long) criteria.setProjection(Projections.sum("amount") ).uniqueResult();
         

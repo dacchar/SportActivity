@@ -14,8 +14,26 @@ public class ActivityFilter {
 	
 	private boolean sportDeviceFiltered = false;
 	private SportDevice sportDevice;
+
+	private boolean personFiltered = false;
+	private Person person;
 	
 	boolean initialized = false;
+
+	public boolean isPersonFiltered() {
+		return personFiltered;
+	}
+	
+	public void setPersonFiltered(boolean personFiltered) {
+		this.personFiltered = personFiltered;
+	}
+	
+	public Person getPerson() {
+		return person;
+	}
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 	
 	public boolean isInitialized() {
 		return initialized;

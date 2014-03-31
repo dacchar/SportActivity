@@ -42,7 +42,8 @@ import java.util.Calendar;
 public class ActivityEditController {  
 	
 	private String formPage = "editActivity";
-	private String successPage = "redirect:/data/activityList";
+//	private String successPage = "redirect:/data/activityList";
+	private String successPage = "redirect:/data/activityList?page=1";
   
 //	@Autowired
 //	private ConversionService conversionService;

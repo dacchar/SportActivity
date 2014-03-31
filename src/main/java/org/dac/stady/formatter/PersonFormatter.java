@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
 
 
-// bean name "cityFormatter" used in dispatcher-servlet.xml
+// bean name "personFormatter" used in dispatcher-servlet.xml
 @Component
 public class PersonFormatter implements Formatter<Person> {
      @Autowired
@@ -22,8 +22,8 @@ public class PersonFormatter implements Formatter<Person> {
      }
  
      @Override
-      public Person parse(String cityId, Locale arg1) throws java.text.ParseException {
-    	 	int id = Integer.parseInt(cityId);
+      public Person parse(String personId, Locale arg1) throws java.text.ParseException {
+    	 	int id = Integer.parseInt(personId);
     	 	
     	 	return personService.getById(id);
            //Else you can just return a new object by setting some values

@@ -121,7 +121,7 @@
 			            <input type="submit" value="<spring:message code="common.ok"/>"/>
 			        </td>
 			        <td>
-			            <a href="<c:url value="/data/activityList"/>"><spring:message code="common.back"/></a>
+			            <a href="<c:url value="/data/activityList?page=1"/>"><spring:message code="common.back"/></a>
 			        </td>
 			    </tr>
 			</table> 
