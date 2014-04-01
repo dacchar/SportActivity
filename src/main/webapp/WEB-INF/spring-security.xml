@@ -8,8 +8,17 @@
  
 	<http auto-config="true">
 		<intercept-url pattern="/data/*" access="ROLE_USER" />
-		<form-login login-page="/login" default-target-url="/main" authentication-failure-url="/loginfailed" />
+		<form-login 
+		    login-page="/login"
+		    login-processing-url="/perform_login"
+		    default-target-url="/main" 
+		    authentication-failure-url="/loginfailed" 
+			username-parameter="usrname"
+			password-parameter="pwd"		    />
+		<!-- 
 		<logout logout-success-url="/logout" />
+		 -->
+		 <logout logout-url="/logout" />
 	</http>
  
 	<authentication-manager>

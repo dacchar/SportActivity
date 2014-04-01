@@ -1,8 +1,19 @@
+.error2 {
+	color: #ff0000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+
+
 .error {
-	color: red;
+	color: green;
 	font-style: italic;
 }
 
 h2 {
 	color:green;
 }
+
+
