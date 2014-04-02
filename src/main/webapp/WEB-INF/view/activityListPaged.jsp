@@ -28,10 +28,10 @@
 				<c:set var="method" value="put"/>
 				
 				<form:form method="${method}" commandName="activityFilter">
-				
+			
 					<table>
 						<tr>
-							<td>
+							<td width="600" colspan="2" align="center">
 								<table>
 								    <tr>
 								        <td><form:label path="dateStart"><spring:message code="activitylist.label.dateStart"/></form:label></td>
@@ -46,6 +46,9 @@
 								    </tr>
 								</table>
 							</td>
+						</tr>
+
+						<tr>
 							<td>
 								<table>
 								    <tr>
@@ -72,11 +75,7 @@
 								    </tr>
 								</table>
 							</td>
-						</tr>
-
-						<tr>
-							<td>
-							</td>
+							
 							<td>
 								<table>
 								    <tr>
@@ -87,7 +86,7 @@
 								    
 								    <tr>
 								    	<td align="left"><form:radiobutton path="personFiltered" value="true"/><spring:message code="activitylist.label.personFiltered.OnlyOne"/></td>
-								    	<td>
+								    	<td align="right">
 											<select name="person">
 											    <c:forEach var="currentPerson" items="${persons}">
 											        <option value="${currentPerson.personId}"
@@ -114,6 +113,7 @@
 					</table>
 					
 				</form:form>
+			
 				
 				
 				<table border="1" bgcolor="black" width="600px">
