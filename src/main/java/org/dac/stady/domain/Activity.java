@@ -48,6 +48,16 @@ public class Activity {
 	@Column(name = "activityTime")  
     private Time activityTime;  
 	
+	@Column(name = "comments")  
+    private String comments;  
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
 
 	public ActivityType getActivityType() {
 		return activityType;

@@ -115,6 +115,11 @@
 					</td>
 			    </tr>
 			    	
+			    <tr>
+			        <td><form:label path="comments"><spring:message code="activityEdit.label.comments"/></form:label></td>
+			        <td><form:input path="comments" size="64" maxlength="256"/></td>
+			        <td><form:errors path="comments" cssClass="error"></form:errors></td>
+			    </tr>
 			    
 			    <tr>
 			        <td>
