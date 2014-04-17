@@ -7,16 +7,16 @@ import java.util.Date;
 import java.util.HashMap;  
 import java.util.List;
 import java.util.Map;  
-
 import javax.validation.Valid;
-
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityFilter;
 import org.dac.stady.domain.Person;
 import org.dac.stady.domain.SportDevice;
+import org.dac.stady.domain.User;
 import org.dac.stady.service.ActivityService;
 import org.dac.stady.service.PersonService;
 import org.dac.stady.service.SportDeviceService;
+import org.dac.stady.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;  
@@ -54,6 +54,9 @@ public class AvtivityListController {
    private SportDeviceService sportDeviceService;
 
    @Autowired  
+   private UserService userService;
+   
+   @Autowired  
    private PersonService personService;
    
 //   @ModelAttribute("count")
@@ -76,6 +79,12 @@ public class AvtivityListController {
    public Collection<Person> populatePersons() {
 		List<Person> persons = this.personService.getList();
 		return persons;
+   }
+
+   @ModelAttribute("users")
+   public Collection<User> populateUsers() {
+		List<User> users = this.userService.getList();
+		return users;
    }
    
    @InitBinder

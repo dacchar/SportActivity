@@ -71,6 +71,17 @@
         <put-attribute name="menu" value="/WEB-INF/view/menuMainData.jsp" />
         <put-attribute name="body" value="/WEB-INF/view/personList.jsp" />
     </definition>
+
+    <definition name="userList" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainData.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/userList.jsp" />
+    </definition>
     
- 
+    <definition name="editUser" extends="base.definition">
+        <put-attribute name="title" value="Spring3HibernateIntegration" />
+        <put-attribute name="menu" value="/WEB-INF/view/menuMainData.jsp" />
+        <put-attribute name="body" value="/WEB-INF/view/editUser.jsp" />
+    </definition>
+    
 </tiles-definitions>

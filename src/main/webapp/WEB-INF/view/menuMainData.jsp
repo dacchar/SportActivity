@@ -7,7 +7,7 @@
 			<ul>
 				<li><a href="/SportActivity/data/activityList?page=1">Activity list (paged)</a></li>
 				<li><a href="/SportActivity/data/activityList">Activity list</a></li>
-				<li><a href="/SportActivity/data/personList">Users</a></li>
+				<li><a href="/SportActivity/data/userList">Users</a></li>
 			</ul>
 		<li><a href="/SportActivity">About</a></li>
 	</ul>

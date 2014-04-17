@@ -4,6 +4,17 @@
 	<div style="text-align: right">
 		Username : ${username}
 	</div>
+
+	<div style="text-align: right">
+		<c:choose>
+		    <c:when test="${empty (username)}">
+		    </c:when>
+		    <c:otherwise>
+		        <img src="/SportActivity/data/userList/100/getImage" width="48" height="48"/>
+		    </c:otherwise>
+		</c:choose>	
+	</div>
+
 	
 	<div style="text-align: right">
 		<c:choose>

@@ -61,17 +61,17 @@
 			    </tr>
 
 			    <tr>
-			    	<td><form:label path="person"><spring:message code="activityEdit.label.person"/></form:label></td>
+			    	<td><form:label path="user"><spring:message code="activityEdit.label.user"/></form:label></td>
 			    		
 			    	<td>
-						<select name="person" disabled="true">
-						    <c:forEach var="currentPerson" items="${persons}">
-						        <option value="${currentPerson.personId}"
-						        	<c:if test='${currentPerson.personId == activity.person.personId }'> 
+						<select name="user" disabled="true">
+						    <c:forEach var="currentUser" items="${users}">
+						        <option value="${currentUser.userId}"
+						        	<c:if test='${currentUser.userId == activity.user.userId }'> 
 						        		selected 
 						        	</c:if>    
 						        >
-						        	${currentPerson.name}
+						        	${currentUser.username}
 						        </option>
 						    </c:forEach>
 						</select>

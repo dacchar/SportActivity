@@ -79,22 +79,22 @@
 							<td>
 								<table>
 								    <tr>
-								    	<td align="left"><form:radiobutton path="personFiltered" value="false"/><spring:message code="activitylist.label.personFiltered.All"/></td>
+								    	<td align="left"><form:radiobutton path="userFiltered" value="false"/><spring:message code="activitylist.label.userFiltered.All"/></td>
 								    	<td>
 										</td>
 								    </tr>
 								    
 								    <tr>
-								    	<td align="left"><form:radiobutton path="personFiltered" value="true"/><spring:message code="activitylist.label.personFiltered.OnlyOne"/></td>
+								    	<td align="left"><form:radiobutton path="userFiltered" value="true"/><spring:message code="activitylist.label.userFiltered.OnlyOne"/></td>
 								    	<td align="right">
-											<select name="person">
-											    <c:forEach var="currentPerson" items="${persons}">
-											        <option value="${currentPerson.personId}"
-											        	<c:if test='${currentPerson.personId == activityFilter.person.personId }'> 
+											<select name="user">
+											    <c:forEach var="currentUser" items="${users}">
+											        <option value="${currentUser.userId}"
+											        	<c:if test='${currentUser.userId == activityFilter.user.userId }'> 
 											        		selected 
 											        	</c:if>    
 											        >
-											        	${currentPerson.name}
+											        	${currentUser.username}
 											        </option>
 											    </c:forEach>
 											</select>
@@ -123,6 +123,7 @@
 						<td></td>  
 						<td><spring:message code="activitylist.table.column.amount"/></td>  
 						<td><spring:message code="activitylist.table.column.name"/></td>
+						<td><spring:message code="activitylist.table.column.avatar"/></td>
 						<td><spring:message code="activitylist.table.column.sportDevice"/></td>
 						<td></td>
 						<td></td>
@@ -134,10 +135,12 @@
 							<td><fmt:formatDate value="${activity.activityDate}" pattern="dd.MM.yyyy" type="date" dateStyle="long" /></td>
 							<td><c:out value="${activity.activityType.name}"/></td>
 							<td><c:out value="${activity.amount}"/></td>
-							<td><c:out value="${activity.person.name}"/></td>  
+							<td><c:out value="${activity.user.username}"/></td>
+							<td><img width="40" height="40" src="<c:url value="/data/userList/${activity.user.userId}/getImage"/>"></img></td>
 							<td><c:out value="${activity.sportDevice.name}"/></td>
-							<td><a href="<c:url value="/data/activityList/${activity.activityId}/edit"/>"><img src="/SportActivity/resources/images/1395252654_edit-notes.png" alt="" /></a></td>
-							<td><a href="<c:url value="/data/activityList/${activity.activityId}/delete"/>"><img src="/SportActivity/resources/images/erase.png" alt="" /></a></td>
+							<td><a href="<c:url value="/data/activityList/${activity.activityId}/edit"/>"><img src="<c:url value="/resources/images/1395252654_edit-notes.png"/>"></img></a></td>
+							<td><a href="<c:url value="/data/activityList/${activity.activityId}/delete"/>"><img src="<c:url value="/resources/images/erase.png"/>"></img></a>
+							</td>
 						</tr>  
 					</c:forEach>
 				</table>
@@ -165,7 +168,7 @@
 			</c:if>  
 		</center>
 		
-		<a href="<c:url value="/data/activityList/new"/>" > <img src="/SportActivity/resources/images/add.png" alt="qqqq" /> </a>
+		<a href="<c:url value="/data/activityList/new"/>" > <img src="<c:url value="/resources/images/add.png"/>"></img> </a>
 		<!-- <spring:message code="activitylist.table.add"/> -->
 		  
 	</body>  

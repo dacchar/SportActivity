@@ -91,6 +91,7 @@
 						<td></td>  
 						<td><spring:message code="activitylist.table.column.amount"/></td>  
 						<td><spring:message code="activitylist.table.column.name"/></td>
+						<td><spring:message code="activitylist.table.column.avatar"/></td>
 						<td><spring:message code="activitylist.table.column.sportDevice"/></td>
 						<td></td>
 						<td></td>
@@ -102,7 +103,8 @@
 							<td><fmt:formatDate value="${activity.activityDate}" pattern="dd.MM.yyyy" type="date" dateStyle="long" /></td>
 							<td><c:out value="${activity.activityType.name}"/></td>
 							<td><c:out value="${activity.amount}"/></td>
-							<td><c:out value="${activity.person.name}"/></td>  
+							<td><c:out value="${activity.user.username}"/></td>
+							<td><img src="/SportActivity/data/userList/<c:out value="${user.userId}"/>/getImage" width="48" height="48"/></td>  
 							<td><c:out value="${activity.sportDevice.name}"/></td>
 							<td><a href="<c:url value="/data/activityList/${activity.activityId}/edit"/>"><img src="/SportActivity/resources/images/1395252654_edit-notes.png" alt="" /></a></td>
 							<td><a href="<c:url value="/data/activityList/${activity.activityId}/delete"/>"><img src="/SportActivity/resources/images/erase.png" alt="" /></a></td>

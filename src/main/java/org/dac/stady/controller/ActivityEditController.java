@@ -3,7 +3,6 @@ package org.dac.stady.controller;
 import javax.validation.Valid;
 import java.sql.Time;
 import java.security.Principal;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -11,18 +10,14 @@ import java.util.Locale;
 import java.util.Map;  
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityType;
-import org.dac.stady.domain.Person;
 import org.dac.stady.domain.SportDevice;
+import org.dac.stady.domain.User;
 import org.dac.stady.service.ActivityService;
 import org.dac.stady.service.ActivityTypeService;
-import org.dac.stady.service.PersonService;
 import org.dac.stady.service.SportDeviceService;
+import org.dac.stady.service.UserService;
 import org.dac.stady.validator.EditActivityValidator;
 import org.springframework.beans.factory.annotation.Autowired;  
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.annotation.DateTimeFormat;
-//import org.springframework.context.MessageSource;
-//import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;  
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -32,7 +27,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import java.util.Calendar;
 
 
   
@@ -55,7 +49,7 @@ public class ActivityEditController {
     private ActivityTypeService activityTypeService;  
 
     @Autowired  
-    private PersonService personService;  
+    private UserService userService;  
 
     @Autowired  
     private SportDeviceService sportDeviceService;  
@@ -94,9 +88,9 @@ public class ActivityEditController {
         return this.activityTypeService.getActivityTypeList();
     }
 
-    @ModelAttribute("persons")
-    public Collection<Person> populatePersons() {
-        return this.personService.getList();
+    @ModelAttribute("users")
+    public Collection<User> populateUsers() {
+        return this.userService.getList();
     }
 
     @ModelAttribute("sportDevices")

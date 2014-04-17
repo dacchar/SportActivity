@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -31,10 +30,14 @@ public class Activity {
     @JoinColumn(name="activityTypeId")
     private ActivityType activityType;
 
-	@ManyToOne
-    @JoinColumn(name="personId")
-    private Person person;
+//	@ManyToOne
+//    @JoinColumn(name="personId")
+//    private Person person;
 
+	@ManyToOne
+    @JoinColumn(name="userId")
+    private User user;
+	
 	@ManyToOne
     @JoinColumn(name="sportDeviceId")
     private SportDevice sportDevice;
@@ -99,15 +102,24 @@ public class Activity {
 		this.activityId = activityId;
 	}
 
+//	@XmlElement
+//	public Person getPerson() {
+//		return person;
+//	}
+//
+//	public void setPerson(Person person) {
+//		this.person = person;
+//	}
+
 	@XmlElement
-	public Person getPerson() {
-		return person;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setUser(User user) {
+		this.user = user;
 	}
-
+	
 	@XmlElement
 	public SportDevice getSportDevice() {
 		return sportDevice;

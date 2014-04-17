@@ -10,12 +10,13 @@ import java.util.Map;
 
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityType;
-import org.dac.stady.domain.Person;
+import org.dac.stady.domain.User;
 import org.dac.stady.domain.SportDevice;
 import org.dac.stady.service.ActivityService;
 import org.dac.stady.service.ActivityTypeService;
 import org.dac.stady.service.PersonService;
 import org.dac.stady.service.SportDeviceService;
+import org.dac.stady.service.UserService;
 import org.dac.stady.validator.EditActivityValidator;
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -49,7 +50,7 @@ public class ActivityDeleteController {
     private ActivityTypeService activityTypeService;  
 
     @Autowired  
-    private PersonService personService;  
+    private UserService userService;  
 
     @Autowired  
     private SportDeviceService sportDeviceService;  
@@ -73,9 +74,9 @@ public class ActivityDeleteController {
         return this.activityTypeService.getActivityTypeList();
     }
 
-    @ModelAttribute("persons")
-    public Collection<Person> populatePersons() {
-        return this.personService.getList();
+    @ModelAttribute("users")
+    public Collection<User> populateUsers() {
+        return this.userService.getList();
     }
 
     @ModelAttribute("sportDevices")

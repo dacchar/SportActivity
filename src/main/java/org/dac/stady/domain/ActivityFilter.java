@@ -1,7 +1,6 @@
 package org.dac.stady.domain;
 
 import java.util.Date;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class ActivityFilter {
@@ -15,24 +14,24 @@ public class ActivityFilter {
 	private boolean sportDeviceFiltered = false;
 	private SportDevice sportDevice;
 
-	private boolean personFiltered = false;
-	private Person person;
+	private boolean userFiltered = false;
+	private User user;
 	
 	boolean initialized = false;
 
-	public boolean isPersonFiltered() {
-		return personFiltered;
+	public boolean isUserFiltered() {
+		return userFiltered;
 	}
 	
-	public void setPersonFiltered(boolean personFiltered) {
-		this.personFiltered = personFiltered;
+	public void setUserFiltered(boolean userFiltered) {
+		this.userFiltered = userFiltered;
 	}
 	
-	public Person getPerson() {
-		return person;
+	public User getUser() {
+		return this.user;
 	}
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	public boolean isInitialized() {
