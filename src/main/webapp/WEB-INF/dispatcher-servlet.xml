@@ -49,17 +49,14 @@
         <property name="password" value="${database.password}" />  
     </bean>  
     
-    <!-- 
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-     -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">  
             <list>
                 <value>org.dac.stady.domain.Activity</value>
                 <value>org.dac.stady.domain.ActivityType</value>
-                <value>org.dac.stady.domain.Person</value>
                 <value>org.dac.stady.domain.User</value>
+                <value>org.dac.stady.domain.Person</value>
                 <value>org.dac.stady.domain.SportDevice</value>
             </list>  
         </property>  
@@ -71,31 +68,29 @@
         </property>  
     </bean>
     
-            
-	<!--             
-    <bean id="hibernateTransactionManager"  class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-     -->  
     <bean id="hibernateTransactionManager"  class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />  
     </bean>
             
     <!-- spring messages with i18n start: -->
-	<bean id="messageSource"
-	    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 	    <property name="basename" value="classpath:messages" />
 	    <property name="defaultEncoding" value="UTF-8"/>
 	</bean>
 	 
-	<bean id="localeChangeInterceptor"
-	    class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-	    <property name="paramName" value="lang" />
-	</bean>
-	 
 	<bean id="localeResolver"
-	    class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-	    <property name="defaultLocale" value="en"/>
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
 	</bean>
-	 
+		
+	<mvc:interceptors>
+	    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	        <property name="paramName" value="lang" />
+	    </bean>
+	</mvc:interceptors>
+	
+	<!-- spring messages with i18n end: -->
+	
 	 
 	 <!-- Themen, css begin: -->
 	 <!-- 
@@ -116,22 +111,6 @@
 	 <!-- Themen, css end: -->
 	 
 	 
-	 
-	<bean id="handlerMapping"
-	    class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-	    <property name="interceptors">
-	    	<list>
-		        <ref bean="localeChangeInterceptor" />
-		        <!-- 
-		        <ref bean="themeChangeInterceptor" />
-		         -->
-		    </list>
-	    </property>
-	</bean>
-	<!-- end spring messages with i18n -->
-	
-
-
 	<!-- convert to show City list + one-to-many in combobox: -->
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 	      <property name="formatters">
@@ -168,20 +147,11 @@
 		</bean>
  	  	
 	 
-   <!-- an HTTP Session-scoped bean exposed as a proxy -->
-   <!-- 
-   <bean id="pageInfo" class="org.dac.stady.domain.PageInfo" scope="session">
-    -->
-      <!-- this next element effects the proxying of the surrounding bean -->
-      <!-- 
-      <aop:scoped-proxy/>
-   </bean>
-    -->
-    
-   <bean id="activityFilter" class="org.dac.stady.domain.ActivityFilter" scope="session">
+    <!-- an HTTP Session-scoped bean exposed as a proxy -->
+    <bean id="activityFilter" class="org.dac.stady.domain.ActivityFilter" scope="session">
       <!-- this next element effects the proxying of the surrounding bean -->
       <aop:scoped-proxy/>
-   </bean>
+    </bean>
    
    	 
  	<mvc:resources mapping="/resources/**" location="/resources/mytheme/" />
@@ -193,5 +163,4 @@
 	
 	<!-- it is neccessary for rest end. -->
 	
- 	  
 </beans>

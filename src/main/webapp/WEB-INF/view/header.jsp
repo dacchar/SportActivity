@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<div style="text-align: right">
-		Username : ${username}
+		<spring:message code="label.username"/> ${username}
 	</div>
 
 	<div style="text-align: right">

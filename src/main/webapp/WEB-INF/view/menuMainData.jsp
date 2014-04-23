@@ -2,13 +2,13 @@
 
 <div id="menu">
 	<ul>
-		<li><a href="/SportActivity">Home</a></li>
-		<li><a href="/SportActivity/Data">Data</a>
+		<li><a href="/SportActivity"><spring:message code="menu.label.home"/></a></li>
+		<li><a href="/SportActivity/Data"><spring:message code="menu.label.data"/></a>
 			<ul>
-				<li><a href="/SportActivity/data/activityList?page=1">Activity list (paged)</a></li>
-				<li><a href="/SportActivity/data/activityList">Activity list</a></li>
-				<li><a href="/SportActivity/data/userList">Users</a></li>
+				<li><a href="/SportActivity/data/activityList?page=1"><spring:message code="menu.label.activityListPaged"/></a></li>
+				<li><a href="/SportActivity/data/activityList"><spring:message code="menu.label.activityList"/></a></li>
+				<li><a href="/SportActivity/data/userList"><spring:message code="menu.label.users"/></a></li>
 			</ul>
-		<li><a href="/SportActivity">About</a></li>
+		<li><a href="/SportActivity"><spring:message code="menu.label.about"/></a></li>
 	</ul>
 </div>
