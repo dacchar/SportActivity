@@ -150,8 +150,8 @@
 					<tr>
 						<td align="left">
 							<c:if test="${!pagedListHolder.firstPage}">
-								<a href="<c:url value="/data/activityList?page=1"/>">First</a>
-								<a href="<c:url value="/data/activityList?page=${pagedListHolder.page}"/>">Prev</a>
+								<a href="<c:url value="/data/activityList?page=1"/>"><spring:message code="activitylist.label.first"/></a>
+								<a href="<c:url value="/data/activityList?page=${pagedListHolder.page}"/>"><spring:message code="activitylist.label.prev"/></a>
 							</c:if>
 						</td>
 						<td align="center">
@@ -159,8 +159,8 @@
 						</td>
 							<td align="right">
 								<c:if test="${!pagedListHolder.lastPage}">
-									<a href="<c:url value="/data/activityList?page=${pagedListHolder.page + 2}"/>">Next</a>
-									<a href="<c:url value="/data/activityList?page=${pagedListHolder.pageCount}"/>">Last</a>
+									<a href="<c:url value="/data/activityList?page=${pagedListHolder.page + 2}"/>"><spring:message code="activitylist.label.next"/></a>
+									<a href="<c:url value="/data/activityList?page=${pagedListHolder.pageCount}"/>"><spring:message code="activitylist.label.last"/></a>
 								</c:if>
 						</td>
 					</tr>

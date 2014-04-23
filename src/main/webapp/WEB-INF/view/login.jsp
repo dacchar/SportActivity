@@ -26,12 +26,12 @@
 		
 			<table>
 				<tr>
-					<td>User:</td>
+					<td><spring:message code="login.label.user"/></td>
 					<!-- 'usrname' defined in spring-security.xml -->
 					<td><input type='text' name='usrname' value=''></td>
 				</tr>
 				<tr>
-					<td>Password:</td>
+					<td><spring:message code="login.label.password"/></td>
 					<!-- 'pwd' defined in spring-security.xml -->
 					<td><input type='password' name='pwd' /></td>
 				</tr>
