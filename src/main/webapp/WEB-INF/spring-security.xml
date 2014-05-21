@@ -19,6 +19,7 @@
 		<logout logout-success-url="/logout" />
 		 -->
 		 <logout logout-url="/logout" />
+		 <remember-me data-source-ref="dataSource"/>
 	</http>
  
 	<authentication-manager>

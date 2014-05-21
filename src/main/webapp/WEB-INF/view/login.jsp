@@ -19,6 +19,7 @@
 			</div>
 		</c:if>
 	 
+ 
 	 	<!-- 
 		<form name='f' action="<c:url value='j_spring_security_check' />" method='POST'>
 		 -->
@@ -28,13 +29,18 @@
 				<tr>
 					<td><spring:message code="login.label.user"/></td>
 					<!-- 'usrname' defined in spring-security.xml -->
-					<td><input type='text' name='usrname' value=''></td>
+					<td><input type='text' name='usrname' value='${userNameDefault}'></td>
 				</tr>
 				<tr>
 					<td><spring:message code="login.label.password"/></td>
 					<!-- 'pwd' defined in spring-security.xml -->
 					<td><input type='password' name='pwd' /></td>
 				</tr>
+				<tr>
+					<td><spring:message code="login.label.rememberMe"/></td>
+					<td><input id="rememeberMe" type="checkbox" name="_spring_security_remember_me"></td>
+				</tr>
+				
 				<tr>
 					<td colspan='2'><input name="submit" type="submit" value="<spring:message code="common.ok"/>" /></td>
 					<td colspan='2'><input name="reset" type="<spring:message code="common.reset"/>" /></td>

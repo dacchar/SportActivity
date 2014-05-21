@@ -48,5 +48,7 @@
 			</c:if>  
 		</center>
 		
+		<a href="<c:url value="/data/userList/new"/>" > <img src="<c:url value="/resources/images/add.png"/>"></img> </a>
+		
 	</body>  
 </html>  

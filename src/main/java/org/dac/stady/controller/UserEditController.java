@@ -48,7 +48,7 @@ public class UserEditController {
    
 
 	@RequestMapping(value = "/{Id}/getImage", method = RequestMethod.GET)
-	public void getImage(HttpServletResponse response , @PathVariable("Id") int Id) {
+	public void getImage(HttpServletResponse response, @PathVariable("Id") int Id) {
 		User user = userService.getById(Id);
 		byte[] avatar = user.getAvatar();
 
@@ -62,11 +62,23 @@ public class UserEditController {
 		}
 		 	
 	}
-    
+
+	@RequestMapping(value = "/{Id}/hasImage", method = RequestMethod.GET)
+	public int hasImage(@PathVariable("Id") int Id) {
+		User user = userService.getById(Id);
+		byte[] avatar = user.getAvatar();
+		
+		if(avatar == null){
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
     	// for security reason, the user can change the id, it is not allowed:
-        dataBinder.setDisallowedFields("userId");
+//        dataBinder.setDisallowedFields("userId");
 
         dataBinder.registerCustomEditor( byte[].class, new ByteArrayMultipartFileEditor() );
         
@@ -144,26 +156,26 @@ public class UserEditController {
 		return formPage;
 	}
    
-	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	//@RequestMapping(value = "/new", method = RequestMethod.POST)
+	@RequestMapping( value = "/new", headers = "content-type=multipart/*", method = { RequestMethod.PUT, RequestMethod.POST } )
 	public String onSubmitAdd(
 			@Valid @ModelAttribute("user") User user
-			, @RequestParam("avatar") MultipartFile file
+			, @RequestParam("file") MultipartFile file
 			, BindingResult result
 			)  
 	{
-//		editActivityValidator.validate(user, result);
-//		if (result.hasErrors()) {
-//			return formPage;
-//		}
-
-		byte[] bytes;
-		try {
-			bytes =  file.getBytes();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (result.hasErrors()) {
+			return formPage;
+		}		
+		
+		if( !file.isEmpty() ) {
+			try {
+				user.setAvatar( file.getBytes() );
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-//		Blob blob = Hibernate.c .createBlob(file.getInputStream());
 		
 		userService.add(user);
 

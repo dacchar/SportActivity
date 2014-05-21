@@ -7,7 +7,11 @@ import java.util.Date;
 import java.util.HashMap;  
 import java.util.List;
 import java.util.Map;  
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 import org.dac.stady.domain.Activity;
 import org.dac.stady.domain.ActivityFilter;
 import org.dac.stady.domain.Person;
@@ -112,9 +116,18 @@ public class AvtivityListController {
 	}
 
    @RequestMapping(method = RequestMethod.GET)  
-   public ModelAndView onInit(@RequestParam(value = "page", required = false, defaultValue = "alle") String page, Principal principal) {
-        Map<String, Object> model = new HashMap<String, Object>();  
+   public ModelAndView onInit(
+		   @RequestParam(value = "page", required = false, defaultValue = "alle") String page,
+		   HttpServletResponse response,
+		   Principal principal) 
+   {
+	   Cookie cookie = new Cookie("COOKIE_NAME", "Cookie value");
+		cookie.setMaxAge(60*60); //1 hour
 		
+	   response.addCookie(cookie);
+	   
+        Map<String, Object> model = new HashMap<String, Object>();  
+        
         initActivityFilter();
         
 //        model.put( "activity", activityService.getActivityList() );

@@ -17,10 +17,15 @@ public class User {
     @Column(name = "USER_ID")  
     private int userId;  
   
-
 	@Column(name = "username")  
     private String username;  
 
+	@Column(name = "password")  
+    private String password;  
+
+    @Column(name = "enabled")  
+    private int enabled;  
+	
 	@Column(name="avatar")
     @Lob
     private byte[] avatar;
@@ -49,5 +54,21 @@ public class User {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 }

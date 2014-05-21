@@ -47,6 +47,18 @@
 			    </tr>
 
 			    <tr>
+			        <td><form:label path="password"><spring:message code="userEdit.label.password"/></form:label></td>
+			        <td><form:input path="password"/></td>
+			        <td><form:errors path="password" cssClass="error"></form:errors></td>
+			    </tr>
+
+			    <tr>
+			        <td><form:label path="enabled"><spring:message code="userEdit.label.enabled"/></form:label></td>
+			        <td><form:input path="enabled"/></td>
+			        <td><form:errors path="enabled" cssClass="error"></form:errors></td>
+			    </tr>
+
+			    <tr>
 			    	<td></td>
 			    	<td><img width="128" height="128" src="<c:url value="/data/userList/${user.userId}/getImage"/>"></img></td>
 			    	<td></td>
