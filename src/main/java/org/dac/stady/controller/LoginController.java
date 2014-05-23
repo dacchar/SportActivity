@@ -23,7 +23,8 @@ public class LoginController {
  
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(
-			@CookieValue(value ="COOKIE_NAME", defaultValue = "hello") String cookie,
+//			@CookieValue(value ="COOKIE_NAME", defaultValue = "hello") String cookie,
+			@CookieValue(value = "hitCounter", defaultValue = "0") Long hitCounter,
 			ModelMap model
 			) {
 	

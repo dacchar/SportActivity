@@ -7,5 +7,6 @@ public interface UserDao {
 	public void save(User user);  
 	public List<User> getList();  
 	public User getById(Integer id);
+	public User getByName(String name);
 	public void remove(Integer id);
 }  

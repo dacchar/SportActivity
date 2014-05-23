@@ -14,7 +14,7 @@ public class DefaultDaoImpl<T> {
     @Autowired  
     private SessionFactory sessionfactory;  
 
-    T classInstance = createNewInstance(); 
+	T classInstance = createNewInstance(); 
     		
     private T createNewInstance(){
     	T classInstance = null;
@@ -72,4 +72,9 @@ public class DefaultDaoImpl<T> {
             sessionfactory.getCurrentSession().delete(object);
         }
     }
+    
+    public SessionFactory getSessionfactory() {
+		return sessionfactory;
+	}
+    
 }  

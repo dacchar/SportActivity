@@ -7,5 +7,6 @@ public interface UserService {
     public void add(User user);  
     public List<User> getList();
     public User getById(Integer id);
+    public User getByName(String name);
     public void remove(Integer id);
 }

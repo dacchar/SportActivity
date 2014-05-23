@@ -96,7 +96,7 @@ public class ActivityDaoImpl implements ActivityDao {
     	
     	return activity;
     }
-    
+
     @Override  
     @Transactional  
     public void remove(Integer id){

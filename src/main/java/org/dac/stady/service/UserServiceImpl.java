@@ -31,6 +31,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User getByName(String name) {
+		return userDao.getByName(name);
+	}
+	
+	@Override
 	public void remove(Integer id) {
 		userDao.remove(id);
 	}

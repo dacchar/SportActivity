@@ -133,7 +133,7 @@ public class ActivityEditController {
 	}
 	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String onInitAdd(Map<String, Object> map, Locale locale) {
+	public String onInitAdd(Map<String, Object> map, Principal principal, Locale locale) {
 		Activity activity = new Activity();
 		
 		Date currentDate = new Date();
@@ -143,6 +143,12 @@ public class ActivityEditController {
 		long currentTime = currentDate.getTime();
 		activity.setActivityTime( new Time(currentTime) );
 
+		User user = userService.getByName( principal.getName() );
+		if(user != null){
+			activity.setUser(user);
+		}
+
+		
 		map.put("activity", activity);
 		//map.put("title", messageSource.getMessage("useredit.label.title.add", null, locale) );
 

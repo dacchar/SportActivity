@@ -26,6 +26,7 @@ import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;  
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;  
@@ -97,7 +98,7 @@ public class AvtivityListController {
 //	   dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
    }
    
-	private void initActivityFilter() {
+	private void initActivityFilter(Principal principal) {
 		if(!activityFilter.isInitialized()){
 //		   activityFilter = new ActivityFilter();
 		   		
@@ -111,6 +112,8 @@ public class AvtivityListController {
 		   SportDevice sportDevice = sportDeviceService.getById(1);
 		   activityFilter.setSportDevice(sportDevice);
 		   
+		   activityFilter.setUser( userService.getByName( principal.getName() ) );
+		   
 		   activityFilter.setInitialized(true);
 		}
 	}
@@ -118,17 +121,27 @@ public class AvtivityListController {
    @RequestMapping(method = RequestMethod.GET)  
    public ModelAndView onInit(
 		   @RequestParam(value = "page", required = false, defaultValue = "alle") String page,
+		   //@CookieValue(value = "hitCounter", defaultValue = "0") Long hitCounter,
 		   HttpServletResponse response,
 		   Principal principal) 
    {
-	   Cookie cookie = new Cookie("COOKIE_NAME", "Cookie value");
-		cookie.setMaxAge(60*60); //1 hour
-		
-	   response.addCookie(cookie);
-	   
+//	   Cookie cookie = new Cookie("COOKIE_NAME", "Cookie value");
+//		cookie.setMaxAge(60*60); //1 hour
+//		
+//	   response.addCookie(cookie);
+
+//       // increment hit counter
+//       hitCounter++;
+//       // create cookie and set it in response
+//       Cookie cookie = new Cookie("hitCounter", hitCounter.toString());
+//       response.addCookie(cookie);
+       
+       
+       
+       
         Map<String, Object> model = new HashMap<String, Object>();  
         
-        initActivityFilter();
+        initActivityFilter(principal);
         
 //        model.put( "activity", activityService.getActivityList() );
         List<Activity> activities = activityService.getActivityList(activityFilter); 
