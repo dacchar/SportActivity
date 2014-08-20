@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class  UserDaoImpl extends DefaultDaoImpl<User> implements UserDao 
 {
     @Override  
-    @Transactional  
     public User getByName(String name){
         Session session = getSessionfactory().getCurrentSession();
         Criteria criteria = session.createCriteria(User.class);

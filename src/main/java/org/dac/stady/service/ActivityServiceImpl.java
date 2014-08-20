@@ -11,40 +11,46 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service  
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)  
+//@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)  
 public class ActivityServiceImpl implements ActivityService {
 
     @Autowired  
     ActivityDao activityDao;  
 	
 	@Override
-	public void addActivity(Activity activity) {
-		activityDao.save(activity);
-	}
-
-	@Override
+	@Transactional(readOnly = true)
 	public List<Activity> getActivityList() {
 		return activityDao.getActivityList(); 
 	}
 	
 	
 	@Override
+	@Transactional(readOnly = true)
 	public List<Activity> getActivityList(ActivityFilter activityFilter) {
 		return activityDao.getActivityList(activityFilter); 
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Long getCount(ActivityFilter activityFilter){
 		return activityDao.getCount(activityFilter); 
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public Activity getById(Integer id) {
 		return activityDao.getById(id);
 	}
 
 	@Override
+	@Transactional
 	public void remove(Integer id) {
 		activityDao.remove(id);
+	}
+	
+	@Override
+	@Transactional
+	public void addActivity(Activity activity) {
+		activityDao.save(activity);
 	}
 }

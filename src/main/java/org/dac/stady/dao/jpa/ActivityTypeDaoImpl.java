@@ -19,13 +19,6 @@ public class ActivityTypeDaoImpl implements ActivityTypeDao {
 
   
     @Override  
-    @Transactional  
-    public void save(ActivityType activityType) {  
-        sessionfactory.getCurrentSession().saveOrUpdate(activityType);  
-    }  
-  
-    @Override  
-    @Transactional  
     public List<ActivityType> getActivityTypeList() {  
   
         @SuppressWarnings("unchecked")  
@@ -37,7 +30,6 @@ public class ActivityTypeDaoImpl implements ActivityTypeDao {
       }  
   
     @Override  
-    @Transactional  
     public ActivityType getById(Integer id){
     	ActivityType activity = (ActivityType) sessionfactory.getCurrentSession().get(ActivityType.class, id);
     	
@@ -45,12 +37,16 @@ public class ActivityTypeDaoImpl implements ActivityTypeDao {
     }
     
     @Override  
-    @Transactional  
     public void remove(Integer id){
     	ActivityType activityType = (ActivityType) sessionfactory.getCurrentSession().load( ActivityType.class, id );
         if (null != activityType) {
             sessionfactory.getCurrentSession().delete(activityType);
         }
     }
+   
+    @Override  
+    public void save(ActivityType activityType) {  
+        sessionfactory.getCurrentSession().saveOrUpdate(activityType);  
+    }  
     
 }  

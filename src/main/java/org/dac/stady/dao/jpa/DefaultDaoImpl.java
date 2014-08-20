@@ -34,13 +34,11 @@ public class DefaultDaoImpl<T> {
     
     
 //    @Override  
-    @Transactional  
     public void save(T object) {  
         sessionfactory.getCurrentSession().saveOrUpdate(object);  
     }  
   
 //    @Override  
-    @Transactional  
     public List<T> getList() {  
   
         @SuppressWarnings("unchecked")  
@@ -53,7 +51,6 @@ public class DefaultDaoImpl<T> {
       }  
   
 //    @Override  
-    @Transactional  
     public T getById(Integer id){
     	
         @SuppressWarnings("unchecked")  
@@ -65,7 +62,6 @@ public class DefaultDaoImpl<T> {
     }
     
 //    @Override  
-    @Transactional  
     public void remove(Integer id){
     	T object = (T) sessionfactory.getCurrentSession().load( classInstance.getClass(), id );
         if (null != object) {

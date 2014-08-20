@@ -10,28 +10,32 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service  
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)  
+//@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)  
 public class SportDeviceServiceImpl implements SportDeviceService {
 
     @Autowired  
-    SportDeviceDao sportDeviceDao;  
+    private SportDeviceDao sportDeviceDao;  
 	
 	@Override
+	@Transactional
 	public void add(SportDevice sportDevice) {
 		sportDeviceDao.save(sportDevice);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<SportDevice> getList() {
 		return sportDeviceDao.getList(); 
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public SportDevice getById(Integer id) {
 		return sportDeviceDao.getById(id);
 	}
 
 	@Override
+	@Transactional
 	public void remove(Integer id) {
 		sportDeviceDao.remove(id);
 	}

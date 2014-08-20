@@ -25,13 +25,11 @@ public class ActivityDaoImpl implements ActivityDao {
 
   
     @Override  
-    @Transactional  
     public void save(Activity activity) {  
         sessionfactory.getCurrentSession().saveOrUpdate(activity);  
     }  
   
     @Override  
-    @Transactional  
     public List<Activity> getActivityList() {  
   
         Session session = sessionfactory.getCurrentSession();
@@ -47,7 +45,6 @@ public class ActivityDaoImpl implements ActivityDao {
       }  
 
     @Override  
-    @Transactional  
     public List<Activity> getActivityList(ActivityFilter activityFilter) {  
   
         Session session = sessionfactory.getCurrentSession();
@@ -73,7 +70,6 @@ public class ActivityDaoImpl implements ActivityDao {
       }  
     
     @Override  
-    @Transactional  
     public Long getCount(ActivityFilter activityFilter){
     	Session session = sessionfactory.getCurrentSession();
     	Criteria criteria = session.createCriteria(Activity.class);
@@ -90,7 +86,6 @@ public class ActivityDaoImpl implements ActivityDao {
     }
     
     @Override  
-    @Transactional  
     public Activity getById(Integer id){
     	Activity activity = (Activity) sessionfactory.getCurrentSession().get(Activity.class, id);
     	
@@ -98,7 +93,6 @@ public class ActivityDaoImpl implements ActivityDao {
     }
 
     @Override  
-    @Transactional  
     public void remove(Integer id){
     	Activity activity = (Activity) sessionfactory.getCurrentSession().load( Activity.class, id );
         if (null != activity) {

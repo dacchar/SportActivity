@@ -10,28 +10,32 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service  
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)  
+//@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)  
 public class PersonServiceImpl implements PersonService {
 
     @Autowired  
     PersonDao personDao;  
 	
 	@Override
+	@Transactional
 	public void add(Person person) {
 		personDao.save(person);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Person> getList() {
 		return personDao.getList(); 
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Person getById(Integer id) {
 		return personDao.getById(id);
 	}
 
 	@Override
+	@Transactional
 	public void remove(Integer id) {
 		personDao.remove(id);
 	}
