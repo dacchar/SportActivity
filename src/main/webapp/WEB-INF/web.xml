@@ -19,11 +19,9 @@
     </welcome-file-list>  
   
     
-    
-    
 	<listener>
 		<listener-class>
-                  org.springframework.web.context.ContextLoaderListener
+            org.springframework.web.context.ContextLoaderListener
         </listener-class>
 	</listener>
  
@@ -31,6 +29,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/dispatcher-servlet.xml,
+			/WEB-INF/infrastructure-config.xml,
 			/WEB-INF/spring-security.xml
 		</param-value>
 	</context-param>

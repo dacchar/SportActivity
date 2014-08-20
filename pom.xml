@@ -202,6 +202,20 @@
 				<artifactId>servlet-api</artifactId>
 				<version>2.5</version>
 			</dependency>
+                        
+                        
+<dependency>
+	<groupId>joda-time</groupId>
+	<artifactId>joda-time</artifactId>
+	<version>2.4</version>
+</dependency>
+                        
+            <!-- test db: -->
+			<dependency>
+				<groupId>hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>1.8.0.10</version>
+			</dependency>
                           
 		    <dependency>
 		      <groupId>junit</groupId>

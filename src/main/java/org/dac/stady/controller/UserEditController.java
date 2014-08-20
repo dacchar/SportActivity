@@ -1,12 +1,16 @@
 package org.dac.stady.controller;
 
 import javax.validation.Valid;
+
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.Principal;
 import java.util.Locale;
 import java.util.Map;  
+
 import org.apache.commons.io.IOUtils;
 import org.dac.stady.domain.User;
 import org.dac.stady.service.ActivityTypeService;
@@ -24,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
+
 import javax.servlet.http.HttpServletResponse;
 
   
@@ -46,21 +51,27 @@ public class UserEditController {
     private UserService userService;  
 
    
-
 	@RequestMapping(value = "/{Id}/getImage", method = RequestMethod.GET)
 	public void getImage(HttpServletResponse response, @PathVariable("Id") int Id) {
 		User user = userService.getById(Id);
 		byte[] avatar = user.getAvatar();
 
 		response.setContentType("image/jpeg");
-		InputStream in1 = new ByteArrayInputStream(avatar);
+		InputStream inputStream = null;
+		if(avatar == null){
+			// default avatar:
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			final String defaultAvatar = "anonym.jpg";
+			inputStream = classLoader.getResourceAsStream(defaultAvatar);
+		} else {
+			inputStream = new ByteArrayInputStream(avatar);
+		}
 		try {
-			IOUtils.copy(in1, response.getOutputStream());
+			IOUtils.copy(inputStream, response.getOutputStream());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 	
 	}
 
 	@RequestMapping(value = "/{Id}/hasImage", method = RequestMethod.GET)

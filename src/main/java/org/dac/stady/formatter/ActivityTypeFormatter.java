@@ -9,6 +9,7 @@ import org.springframework.format.Formatter;
 
 
 // bean name "cityFormatter" used in dispatcher-servlet.xml
+//@Component("activityTypeFormatter")
 @Component
 public class ActivityTypeFormatter implements Formatter<ActivityType> {
      @Autowired

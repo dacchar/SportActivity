@@ -18,7 +18,6 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd"
 >  
 
-	<context:property-placeholder location="classpath:jdbc.properties" />
 	<context:component-scan base-package="org.dac.stady" />
 	<tx:annotation-driven transaction-manager="hibernateTransactionManager" />
 	
@@ -40,15 +39,6 @@
 	    </property>
 	</bean>
 
-    
-    <bean id="dataSource"  
-        class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
-        <property name="driverClassName" value="${database.driver}" />  
-        <property name="url" value="${database.url}" />  
-        <property name="username" value="${database.user}" />  
-        <property name="password" value="${database.password}" />  
-    </bean>  
-    
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">  
@@ -158,10 +148,7 @@
    	 
  	<mvc:resources mapping="/resources/**" location="/resources/mytheme/" />
  	
-	<mvc:annotation-driven
-		content-negotiation-manager="cnManager" 
-		conversion-service="conversionService"
-	/>
+	<mvc:annotation-driven content-negotiation-manager="cnManager" conversion-service="conversionService" />
 	
 	<!-- it is neccessary for rest end. -->
 	
